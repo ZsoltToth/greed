@@ -26,9 +26,7 @@ class GreedImplTest {
         // given
         final int[] tooManyDice = new int[]{1, 2, 3, 4, 5, 6, 7};
         // when
-        assertThatThrownBy(() -> {
-            greed.score(tooManyDice);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> greed.score(tooManyDice)).isInstanceOf(IllegalArgumentException.class);
         // then
     }
 
@@ -38,9 +36,7 @@ class GreedImplTest {
         // given
         final int[] diceWithTooLowValue = new int[]{1, 2, 3, 4, 5, 0};
         // when
-        assertThatThrownBy(() -> {
-            greed.score(diceWithTooLowValue);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> greed.score(diceWithTooLowValue)).isInstanceOf(IllegalArgumentException.class);
         // then
     }
 
@@ -50,9 +46,7 @@ class GreedImplTest {
         // given
         final int[] diceWithTooHighValue = new int[]{1, 2, 3, 4, 5, 7};
         // when
-        assertThatThrownBy(() -> {
-            greed.score(diceWithTooHighValue);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> greed.score(diceWithTooHighValue)).isInstanceOf(IllegalArgumentException.class);
         // then
     }
 
