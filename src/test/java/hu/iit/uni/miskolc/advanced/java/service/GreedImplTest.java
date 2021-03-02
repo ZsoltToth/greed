@@ -3,10 +3,16 @@ package hu.iit.uni.miskolc.advanced.java.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class GreedImplTest {
@@ -50,4 +56,49 @@ class GreedImplTest {
         // then
     }
 
+    @Test
+    @DisplayName("checking single one rule")
+    void scoreShouldBe100ForSingleOne(){
+        // given
+        final int expected = 100;
+        final int[] dice = new int[] {1};
+        // when
+        final int actual = greed.score(dice);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("checking single five rule")
+    void scoreShouldBe50ForSingleFive(){
+        // given
+        final int expected = 50;
+        final int[] dice = new int[] {5};
+        // when
+        final int actual = greed.score(dice);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("tripleScoreArgumentsProvider")
+    @DisplayName("Triple Scores")
+    void scoreShouldCalculateTipleScoresProperly(int[] dice, int expected){
+        // given
+        // when
+        final int actual = greed.score(dice);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> tripleScoreArgumentsProvider(){
+        return Stream.of(
+                Arguments.of(new int[] {1,1,1},1000),
+                Arguments.of(new int[] {2,2,2}, 200),
+                Arguments.of(new int[] {3,3,3}, 300),
+                Arguments.of(new int[] {4,4,4}, 400),
+                Arguments.of(new int[] {5,5,5}, 500),
+                Arguments.of(new int[] {6,6,6}, 600)
+        );
+    }
 }

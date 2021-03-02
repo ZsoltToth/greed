@@ -7,7 +7,10 @@ public class GreedImpl implements Greed{
     @Override
     public int score(int[] dice) {
         this.checkDice(dice);
-        return 0;
+        if(dice[0] == 1){
+            return 100;
+        }
+        return 50;
     }
 
     private void checkDice(int[] dice){
