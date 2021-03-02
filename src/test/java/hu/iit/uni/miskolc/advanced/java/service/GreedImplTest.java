@@ -75,9 +75,9 @@ class GreedImplTest {
     }
 
     @ParameterizedTest
-    @MethodSource("tripleScoreArgumentsProvider")
-    @DisplayName("Triple Scores")
-    void scoreShouldCalculateTipleScoresProperly(int[] dice, int expected){
+    @MethodSource("manyOfKindScoreArgumentsProvider")
+    @DisplayName("Many-of-a-kind Scores")
+    void scoreShouldCalculateManyOfKindScores(int[] dice, int expected){
         // given
         // when
         final int actual = greed.score(dice);
@@ -85,14 +85,32 @@ class GreedImplTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> tripleScoreArgumentsProvider(){
+    private static Stream<Arguments> manyOfKindScoreArgumentsProvider(){
         return Stream.of(
                 Arguments.of(new int[] {1,1,1},1000),
                 Arguments.of(new int[] {2,2,2}, 200),
                 Arguments.of(new int[] {3,3,3}, 300),
                 Arguments.of(new int[] {4,4,4}, 400),
                 Arguments.of(new int[] {5,5,5}, 500),
-                Arguments.of(new int[] {6,6,6}, 600)
+                Arguments.of(new int[] {6,6,6}, 600),
+                Arguments.of(new int[] {1,1,1,1},2000),
+                Arguments.of(new int[] {2,2,2,2}, 400),
+                Arguments.of(new int[] {3,3,3,3}, 600),
+                Arguments.of(new int[] {4,4,4,4}, 800),
+                Arguments.of(new int[] {5,5,5,5}, 1000),
+                Arguments.of(new int[] {6,6,6,6}, 1200),
+                Arguments.of(new int[] {1,1,1,1,1},4000),
+                Arguments.of(new int[] {2,2,2,2,2}, 800),
+                Arguments.of(new int[] {3,3,3,3,3}, 1200),
+                Arguments.of(new int[] {4,4,4,4,4}, 1600),
+                Arguments.of(new int[] {5,5,5,5,5}, 2000),
+                Arguments.of(new int[] {6,6,6,6,6}, 2400),
+                Arguments.of(new int[] {1,1,1,1,1,1},8000),
+                Arguments.of(new int[] {2,2,2,2,2,2}, 1600),
+                Arguments.of(new int[] {3,3,3,3,3,3}, 2400),
+                Arguments.of(new int[] {4,4,4,4,4,4}, 3200),
+                Arguments.of(new int[] {5,5,5,5,5,5}, 4000),
+                Arguments.of(new int[] {6,6,6,6,6,6}, 4800)
         );
     }
 }
