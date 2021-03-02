@@ -7,6 +7,7 @@ public class GreedImpl implements Greed{
     private static final int MIN_DICE_VALUE = 1;
     private static final int MAX_DICE_VALUE = 6;
     private static final int MAX_DICE_COUNT = 6;
+
     private static final int STRAIGHT_SCORE = 1200;
     private static final int THREE_PAIR_SCORE = 800;
     private static final int SINGLE_ONE_SCORE = 100;
@@ -65,7 +66,6 @@ public class GreedImpl implements Greed{
                 throw new IllegalArgumentException("Invalid Die Value");
             }
         }
-
     }
 
     private int[] valueCounts(int[] dice){
