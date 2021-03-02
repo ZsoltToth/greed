@@ -113,4 +113,28 @@ class GreedImplTest {
                 Arguments.of(new int[] {6,6,6,6,6,6}, 4800)
         );
     }
+
+    @Test
+    @DisplayName("checking Three Pairs rule")
+    void scoreShouldBe800ForThreePairs(){
+        // given
+        final int expected = 800;
+        final int[] dice = new int[] {1,1,2,2,3,3};
+        // when
+        final int actual = greed.score(dice);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("checking Straight rule")
+    void scoreShouldBe1200ForStraight(){
+        // given
+        final int expected = 1200;
+        final int[] dice = new int[] {1,2,3,4,5,6};
+        // when
+        final int actual = greed.score(dice);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }
